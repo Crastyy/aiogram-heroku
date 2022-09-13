@@ -4,6 +4,8 @@ from aiogram import Bot
 from aiogram.dispatcher import Dispatcher
 from aiogram.utils.executor import start_webhook
 from aiogram import Bot, types
+import socket
+
 
 
 TOKEN = os.getenv('TOKEN')
@@ -32,7 +34,7 @@ async def on_shutdown(dispatcher):
 
 @dp.message_handler()
 async def echo(message: types.Message):
-    await message.answer(message.text)
+    await message.answer(text=f'{socket.gethostbyname(socket.gethostname())}')
 
 
 if __name__ == '__main__':
