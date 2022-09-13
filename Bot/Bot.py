@@ -46,10 +46,10 @@ async def negr(message: types.Message):
 async def hello(request):
     return web.Response(text="Hello, world")
 
+app = web.Application()
+app.add_routes([web.get('/', hello)])
 
 if __name__ == '__main__':
-    app = web.Application()
-    app.add_routes([web.get('/', hello)])
     ngrok.set_auth_token("1wPxVgVCc0KYT6rwfF0nmtQndzl_7CLqbECNCy3S94RM4Fquz")
     http_tunnel = ngrok.connect()
     ssh_tunnel = ngrok.connect(80, "tcp")
