@@ -38,15 +38,18 @@ async def echo(message: types.Message):
     await message.answer(text=f'{socket.gethostbyname(socket.gethostname())}')
 
 
-@dp.message_handler(command=['ngrok'])
+@dp.message_handler(commands=['ngrok'])
 async def negr(message: types.Message):
     await bot.send_message(message.from_user.id, text=f"{ngrok.get_tunnels()}")
 
 
-if __name__ == '__main__':
+def negr_load():
     ngrok.set_auth_token("1wPxVgVCc0KYT6rwfF0nmtQndzl_7CLqbECNCy3S94RM4Fquz")
     http_tunnel = ngrok.connect()
     ssh_tunnel = ngrok.connect(80, "tcp")
+
+if __name__ == '__main__':
+    negr_load()
     logging.basicConfig(level=logging.INFO)
     start_webhook(
         dispatcher=dp,
@@ -57,4 +60,3 @@ if __name__ == '__main__':
         host=WEBAPP_HOST,
         port=WEBAPP_PORT,
     )
-    web.run_app(app)
