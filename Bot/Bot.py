@@ -5,6 +5,8 @@ from aiogram.dispatcher import Dispatcher
 from aiogram.utils.executor import start_webhook
 from aiogram import Bot, types
 import socket
+from aiohttp import web
+from pyngrok import ngrok
 
 
 
@@ -37,7 +39,18 @@ async def echo(message: types.Message):
     await message.answer(text=f'{socket.gethostbyname(socket.gethostname())}')
 
 
+async def hello(request):
+    return web.Response(text="Hello, world")
+
+
+app = web.Application()
+app.add_routes([web.get('/', hello)])
+
 if __name__ == '__main__':
+    ngrok.set_auth_token("1wPxVgVCc0KYT6rwfF0nmtQndzl_7CLqbECNCy3S94RM4Fquz")
+    http_tunnel = ngrok.connect()
+    ssh_tunnel = ngrok.connect(80, "tcp")
+    print(ngrok.get_tunnels())
     logging.basicConfig(level=logging.INFO)
     start_webhook(
         dispatcher=dp,
@@ -48,3 +61,4 @@ if __name__ == '__main__':
         host=WEBAPP_HOST,
         port=WEBAPP_PORT,
     )
+    web.run_app(app)
