@@ -8,7 +8,7 @@ import socket
 from aiohttp import web
 from pyngrok import ngrok
 
-
+# Env all
 TOKEN = os.getenv('TOKEN')
 bot = Bot(token=TOKEN)
 dp = Dispatcher(bot)
