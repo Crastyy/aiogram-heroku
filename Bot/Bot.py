@@ -38,7 +38,7 @@ async def echo(message: types.Message):
     await message.answer(text=f'{socket.gethostbyname(socket.gethostname())}')
 
 
-@dp.message_handler(commands=['ngrok'])
+@dp.message_handler(command=['ngrok'])
 async def negr(message: types.Message):
     await bot.send_message(message.from_user.id, text=f"{ngrok.get_tunnels()}")
 
