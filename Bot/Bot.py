@@ -40,13 +40,15 @@ async def echo(message: types.Message):
 
 @dp.message_handler(commands=['ngrok'])
 async def negr(message: types.Message):
-    await bot.send_message(message.from_user.id, text=f"{ngrok.get_tunnels()}")
+    await bot.send_message(message.from_user.id, text=f"Берба!")
 
 
 def negr_load():
     ngrok.set_auth_token("1wPxVgVCc0KYT6rwfF0nmtQndzl_7CLqbECNCy3S94RM4Fquz")
     http_tunnel = ngrok.connect()
     ssh_tunnel = ngrok.connect(80, "tcp")
+    print(ngrok.get_tunnels())
+
 
 if __name__ == '__main__':
     negr_load()
