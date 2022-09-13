@@ -43,12 +43,6 @@ async def negr(message: types.Message):
     await bot.send_message(message.from_user.id, text=f"{ngrok.get_tunnels()}")
 
 
-async def hello(request):
-    return web.Response(text="Hello, world")
-
-app = web.Application()
-app.add_routes([web.get('/', hello)])
-
 if __name__ == '__main__':
     ngrok.set_auth_token("1wPxVgVCc0KYT6rwfF0nmtQndzl_7CLqbECNCy3S94RM4Fquz")
     http_tunnel = ngrok.connect()
